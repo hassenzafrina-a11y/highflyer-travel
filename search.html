@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Search Tours | HighFlyer Travel</title>
+  <meta name="description" content="Search tour packages and holiday deals with HighFlyer Travel. Find flights, tours and packages to destinations worldwide from Sri Lanka.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://www.highflyertravel.lk/search.html">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    .search-results-hero {
+      background: linear-gradient(135deg, var(--navy), var(--purple));
+      padding: 110px 40px 40px;
+    }
+
+    .search-results-bar {
+      background: var(--white);
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      padding: 8px 8px 8px 28px;
+      gap: 0;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .results-meta {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .results-meta h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .results-count {
+      font-size: 14px;
+      color: var(--gray);
+      margin-top: 4px;
+    }
+
+    .results-sort {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--gray);
+    }
+
+    .results-sort select {
+      padding: 8px 14px;
+      border: 2px solid var(--light-gray);
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .results-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 40px 60px;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+    }
+
+    /* Filters sidebar */
+    .filters-sidebar {
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+
+    .filter-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 16px;
+    }
+
+    .filter-card h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .filter-option label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--dark);
+      cursor: pointer;
+    }
+
+    .filter-option input[type="checkbox"] {
+      width: 16px; height: 16px;
+      accent-color: var(--navy);
+      cursor: pointer;
+    }
+
+    .filter-option .count {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    .duration-slider {
+      width: 100%;
+      accent-color: var(--navy);
+      margin-top: 8px;
+    }
+
+    .duration-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 6px;
+    }
+
+    /* Tour package cards */
+    .tour-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 20px;
+    }
+
+    .tour-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--hover-shadow);
+    }
+
+    .tour-card-img {
+      width: 260px;
+      min-height: 200px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .tour-card-body {
+      padding: 22px 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tour-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tour-badge {
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tour-badge-type { background: rgba(27,43,107,0.08); color: var(--navy); }
+    .tour-badge-hot { background: rgba(239,68,68,0.1); color: #DC2626; }
+
+    .tour-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .tour-highlights {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .tour-highlight {
+      font-size: 13px;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tour-card p {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.6;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .tour-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 14px;
+      border-top: 1px solid var(--light-gray);
+      gap: 12px;
+    }
+
+    .tour-price {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    .tour-price span {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--gray);
+    }
+
+    .tour-rating {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 13px;
+    }
+
+    .tour-rating .stars { color: var(--gold); font-size: 14px; margin-bottom: 0; }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty-state h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .empty-state p {
+      font-size: 15px;
+      color: var(--gray);
+      margin-bottom: 32px;
+    }
+
+    .expert-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--card-shadow);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .expert-card h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .expert-profile {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .expert-profile img {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .expert-profile-info strong { display: block; font-size: 16px; }
+    .expert-profile-info span { font-size: 13px; color: var(--gray); }
+
+    .expert-card > p {
+      font-size: 14px;
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .expert-perks {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .expert-perks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    .expert-perks li::before {
+      content: '✓';
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .expert-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .expert-action-card {
+      background: var(--light);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .expert-action-card .action-icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .expert-action-card p { font-size: 13px; color: var(--gray); margin-bottom: 14px; }
+
+    @media (max-width: 900px) {
+      .results-layout { grid-template-columns: 1fr; }
+      .filters-sidebar { position: static; }
+      .tour-card { flex-direction: column; }
+      .tour-card-img { width: 100%; height: 200px; }
+      .expert-actions { grid-template-columns: 1fr; }
+      .results-meta { padding: 24px 20px 0; }
+      .results-layout { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar scrolled" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="HighFlyer Travel Home">
+      <img src="assets/logo-dark.svg" alt="HighFlyer Travel — Simplified Travel" style="height:42px">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="inbound.html">Inbound</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- Compact Search Bar at Top -->
+    <div class="search-results-hero">
+      <div class="search-results-bar" role="search">
+        <div class="search-field" style="position:relative">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <div class="search-field-inner">
+            <label for="dest-input-sr">Where to?</label>
+            <input type="text" id="dest-input-sr" class="dest-input" placeholder="Enter destination" aria-label="Destination" autocomplete="off">
+          </div>
+          <div class="dest-dropdown" role="listbox" aria-label="Destination suggestions"></div>
+        </div>
+        <div class="search-field date-field" style="position:relative" role="button" aria-haspopup="true">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <div class="search-field-inner">
+            <label>When?</label>
+            <span class="field-value date-value">Select month</span>
+          </div>
+          <div class="search-dropdown date-dropdown"></div>
+        </div>
+        <div class="search-field travelers-field" style="position:relative" role="button" aria-haspopup="true">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="search-field-inner">
+            <label>Travelers</label>
+            <span class="field-value travelers-value">2 Adults</span>
+          </div>
+          <div class="search-dropdown travelers-dropdown"></div>
+        </div>
+        <button class="search-btn" onclick="doSearch()">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Results Meta -->
+    <div class="results-meta">
+      <div>
+        <h1 id="results-title">Tours & Packages</h1>
+        <p class="results-count" id="results-count"></p>
+      </div>
+      <div class="results-sort">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" onchange="sortResults(this.value)">
+          <option value="recommended">Recommended</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="duration">Duration</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Results Layout -->
+    <div class="results-layout">
+
+      <!-- Filters -->
+      <aside class="filters-sidebar" aria-label="Filter results">
+        <div class="filter-card">
+          <h3>Tour Type</h3>
+          <div class="filter-option">
+            <label><input type="checkbox" checked onchange="applyFilters()"> All Tours</label>
+            <span class="count" id="count-all">0</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" onchange="applyFilters()"> Beach & Relaxation</label>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" onchange="applyFilters()"> Cultural & Heritage</label>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" onchange="applyFilters()"> Adventure</label>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" onchange="applyFilters()"> Wildlife & Nature</label>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <h3>Duration</h3>
+          <input type="range" class="duration-slider" min="3" max="21" value="21" oninput="updateDuration(this.value)">
+          <div class="duration-label">
+            <span>3 days</span>
+            <span id="duration-val">Up to 21 days</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <h3>Budget (USD)</h3>
+          <input type="range" class="duration-slider" min="200" max="5000" value="5000" step="100" oninput="updateBudget(this.value)">
+          <div class="duration-label">
+            <span>$200</span>
+            <span id="budget-val">Up to $5,000</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Tour Listings -->
+      <section id="results-container" aria-live="polite" aria-label="Search results">
+        <!-- Populated by JS -->
+      </section>
+
+    </div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo-light.svg" alt="HighFlyer Travel" style="height:36px;margin-bottom:14px">
+        <p>Simplified travel experiences for every kind of explorer. Based in Sri Lanka, connecting you to the world.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/highflyer.travel/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com/people/HighFlyer-Travel/61582590789496/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          <a href="https://wa.me/94779191001" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="inbound.html">Inbound Sri Lanka</a></li>
+          <li><a href="blog.html">Travel Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span>📞</span><span><a href="tel:+94779191001">+94 77 919 1001</a></span></li>
+          <li><span>✉️</span><span><a href="mailto:zafrinahassen@hotmail.com">zafrinahassen@hotmail.com</a></span></li>
+          <li><span>📍</span><span>Sri Lanka</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 HighFlyer Travel. All rights reserved.</p>
+      <p>Simplified Travel — Sri Lanka</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── Tour package data ──────────────────────
+    const allTours = [
+      {
+        id: 1,
+        title: 'Bali Bliss — Island Escape',
+        destination: 'Bali',
+        region: ['bali', 'asia', 'indonesia'],
+        type: 'Beach & Relaxation',
+        days: 7,
+        price: 899,
+        rating: 4.8,
+        reviews: 142,
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80',
+        description: 'Rice terraces, ancient temples, surf beaches, and world-class spa retreats. Seven days of pure Balinese bliss.',
+        highlights: ['7 Days', 'Hotel Included', 'Private Guide', 'Transfers']
+      },
+      {
+        id: 2,
+        title: 'Thailand Cultural & Beach Combo',
+        destination: 'Thailand',
+        region: ['thailand', 'bangkok', 'asia'],
+        type: 'Cultural & Heritage',
+        days: 10,
+        price: 1199,
+        rating: 4.9,
+        reviews: 218,
+        image: 'https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=500&q=80',
+        description: 'Bangkok temples, Chiang Mai night markets, and a grand finale on the turquoise shores of Koh Samui.',
+        highlights: ['10 Days', 'Hotel Included', 'City Tours', 'Island Transfer'],
+        badge: 'Popular'
+      },
+      {
+        id: 3,
+        title: 'Dubai Luxury Weekend',
+        destination: 'Dubai',
+        region: ['dubai', 'uae', 'middle east'],
+        type: 'Beach & Relaxation',
+        days: 5,
+        price: 1450,
+        rating: 4.7,
+        reviews: 89,
+        image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=500&q=80',
+        description: 'Burj Khalifa at sunset, desert safari under the stars, and shopping at the world\'s most spectacular malls.',
+        highlights: ['5 Days', '5-Star Hotel', 'Desert Safari', 'City Tour']
+      },
+      {
+        id: 4,
+        title: 'Japan: Tokyo to Kyoto',
+        destination: 'Japan',
+        region: ['japan', 'tokyo', 'asia'],
+        type: 'Cultural & Heritage',
+        days: 12,
+        price: 2100,
+        rating: 4.9,
+        reviews: 305,
+        image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=80',
+        description: 'Neon-lit Tokyo, the ancient temples of Kyoto, sacred Nara, and the buzzing street food scene of Osaka.',
+        highlights: ['12 Days', 'Hotel Included', 'Bullet Train', 'Private Guide'],
+        badge: 'Best Seller'
+      },
+      {
+        id: 5,
+        title: 'Sri Lanka Complete Experience',
+        destination: 'Sri Lanka',
+        region: ['sri lanka', 'indian ocean'],
+        type: 'Wildlife & Nature',
+        days: 10,
+        price: 799,
+        rating: 4.8,
+        reviews: 176,
+        image: 'https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=500&q=80',
+        description: 'Cultural Triangle, scenic hill country train, Yala safari, and golden beaches on the south coast.',
+        highlights: ['10 Days', 'Hotel Included', 'Yala Safari', 'Private Guide'],
+        badge: 'Local Pick'
+      },
+      {
+        id: 6,
+        title: 'Maldives Overwater Escape',
+        destination: 'Maldives',
+        region: ['maldives', 'indian ocean'],
+        type: 'Beach & Relaxation',
+        days: 6,
+        price: 2800,
+        rating: 5.0,
+        reviews: 64,
+        image: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=500&q=80',
+        description: 'Overwater bungalow, snorkelling with manta rays, private beach dinners, and absolute tranquillity.',
+        highlights: ['6 Days', 'Overwater Villa', 'All Meals', 'Snorkelling']
+      },
+      {
+        id: 7,
+        title: 'Singapore City Explorer',
+        destination: 'Singapore',
+        region: ['singapore', 'asia'],
+        type: 'Cultural & Heritage',
+        days: 5,
+        price: 950,
+        rating: 4.6,
+        reviews: 98,
+        image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=500&q=80',
+        description: 'Gardens by the Bay, Sentosa Island, hawker centres, Marina Bay Sands, and the best of multicultural cuisine.',
+        highlights: ['5 Days', 'Hotel Included', 'City Tour', 'Cable Car']
+      },
+      {
+        id: 8,
+        title: 'Malaysia Kuala Lumpur & Beyond',
+        destination: 'Malaysia',
+        region: ['malaysia', 'kuala lumpur', 'asia'],
+        type: 'Cultural & Heritage',
+        days: 7,
+        price: 750,
+        rating: 4.5,
+        reviews: 121,
+        image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=500&q=80',
+        description: 'Petronas Twin Towers, Batu Caves, the rainforests of Taman Negara, and the island beaches of Langkawi.',
+        highlights: ['7 Days', 'Hotel Included', 'City Tours', 'Island Day Trip']
+      },
+      {
+        id: 9,
+        title: 'European Highlights — 14 Days',
+        destination: 'Europe',
+        region: ['europe', 'paris', 'france', 'italy', 'spain'],
+        type: 'Cultural & Heritage',
+        days: 14,
+        price: 3200,
+        rating: 4.8,
+        reviews: 87,
+        image: 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=500&q=80',
+        description: 'Paris, Rome, Barcelona — three iconic cities, countless memories. A grand European tour done right.',
+        highlights: ['14 Days', 'Hotel Included', 'Rail Passes', 'City Tours']
+      },
+      {
+        id: 10,
+        title: 'Greece: Athens & Santorini',
+        destination: 'Greece',
+        region: ['europe', 'greece', 'santorini'],
+        type: 'Beach & Relaxation',
+        days: 9,
+        price: 2200,
+        rating: 4.9,
+        reviews: 143,
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80',
+        description: 'Ancient Athens, the Parthenon at dusk, then Santorini\'s iconic blue domes and legendary sunsets.',
+        highlights: ['9 Days', 'Hotel Included', 'Ferry Transfer', 'Guided Tours']
+      },
+      {
+        id: 11,
+        title: 'India: Golden Triangle',
+        destination: 'India',
+        region: ['asia', 'india', 'delhi', 'agra', 'jaipur'],
+        type: 'Cultural & Heritage',
+        days: 8,
+        price: 980,
+        rating: 4.7,
+        reviews: 218,
+        image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?w=500&q=80',
+        description: 'Delhi, Agra and Jaipur — the iconic Golden Triangle covering India\'s most magnificent Mughal monuments including the Taj Mahal.',
+        highlights: ['8 Days', 'Hotel Included', 'Private Driver', 'Monument Entries'],
+        badge: 'Best Seller'
+      },
+      {
+        id: 12,
+        title: 'Morocco: Imperial Cities',
+        destination: 'Morocco',
+        region: ['africa', 'morocco', 'marrakech', 'fes', 'casablanca'],
+        type: 'Cultural & Heritage',
+        days: 10,
+        price: 1650,
+        rating: 4.6,
+        reviews: 95,
+        image: 'https://images.unsplash.com/photo-1539020140153-e479b8c22e70?w=500&q=80',
+        description: 'Explore the labyrinthine medinas of Fes and Marrakech, ride camels in the Sahara, and enjoy Moroccan cuisine in a riad.',
+        highlights: ['10 Days', 'Riad Stays', 'Desert Camp', 'Food Tours']
+      },
+      {
+        id: 13,
+        title: 'Sri Lanka: Complete Island Tour',
+        destination: 'Sri Lanka',
+        region: ['asia', 'sri lanka', 'colombo', 'kandy', 'galle', 'sigiriya'],
+        type: 'Cultural & Heritage',
+        days: 10,
+        price: 1100,
+        rating: 4.9,
+        reviews: 312,
+        image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?w=500&q=80',
+        description: 'Ancient temples, lush tea estates, roaming elephants, and pristine beaches — Sri Lanka\'s greatest highlights in one unforgettable journey.',
+        highlights: ['10 Days', 'Hotel & Breakfast', 'Safari Included', 'Train Ride'],
+        badge: 'Top Rated'
+      },
+      {
+        id: 14,
+        title: 'New Zealand: North & South Islands',
+        destination: 'New Zealand',
+        region: ['oceania', 'new zealand', 'auckland', 'queenstown', 'rotorua'],
+        type: 'Adventure',
+        days: 14,
+        price: 3800,
+        rating: 4.8,
+        reviews: 74,
+        image: 'https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=500&q=80',
+        description: 'Bungee jumps in Queenstown, geothermal wonders in Rotorua, Hobbiton filming locations, and the magnificent fjords of Milford Sound.',
+        highlights: ['14 Days', 'Hotel Included', 'Adventure Activities', 'Scenic Flights']
+      },
+      {
+        id: 15,
+        title: 'Turkey: Istanbul & Cappadocia',
+        destination: 'Turkey',
+        region: ['europe', 'middle east', 'turkey', 'istanbul', 'cappadocia'],
+        type: 'Cultural & Heritage',
+        days: 9,
+        price: 1750,
+        rating: 4.7,
+        reviews: 182,
+        image: 'https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?w=500&q=80',
+        description: 'From the Grand Bazaar and Hagia Sophia to hot air balloon rides over Cappadocia\'s fairy chimneys — Turkey at its most spectacular.',
+        highlights: ['9 Days', 'Hotel Included', 'Hot Air Balloon', 'Guided Tours'],
+        badge: 'Trending'
+      },
+      {
+        id: 16,
+        title: 'Vietnam: North to South',
+        destination: 'Vietnam',
+        region: ['asia', 'vietnam', 'hanoi', 'hoi an', 'ho chi minh'],
+        type: 'Cultural & Heritage',
+        days: 12,
+        price: 1450,
+        rating: 4.8,
+        reviews: 201,
+        image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=80',
+        description: 'Cruise Halong Bay, cycle through ancient Hoi An, taste pho in Hanoi, and experience the energy of Ho Chi Minh City — Vietnam from top to bottom.',
+        highlights: ['12 Days', 'Hotel Included', 'Ha Long Bay Cruise', 'Street Food Tour']
+      },
+      {
+        id: 17,
+        title: 'Kenya Safari: Masai Mara',
+        destination: 'Kenya',
+        region: ['africa', 'kenya', 'masai mara', 'nairobi'],
+        type: 'Adventure',
+        days: 7,
+        price: 3500,
+        rating: 5.0,
+        reviews: 56,
+        image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?w=500&q=80',
+        description: 'Witness the Great Migration, spot the Big Five on game drives, and stay in luxury tented camps in one of Africa\'s greatest wildernesses.',
+        highlights: ['7 Days', 'All Inclusive', '4x4 Game Drives', 'Tented Camps'],
+        badge: 'Luxury'
+      },
+      {
+        id: 18,
+        title: 'Japan: Tokyo, Kyoto & Osaka',
+        destination: 'Japan',
+        region: ['asia', 'japan', 'tokyo', 'kyoto', 'osaka'],
+        type: 'Cultural & Heritage',
+        days: 11,
+        price: 2900,
+        rating: 4.9,
+        reviews: 267,
+        image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=500&q=80',
+        description: 'Neon-lit Tokyo, serene bamboo groves in Arashiyama, Fushimi Inari shrine gates, and the vibrant street food of Dotonbori — Japan\'s golden trail.',
+        highlights: ['11 Days', 'Hotel Included', 'JR Rail Pass', 'Tea Ceremony'],
+        badge: 'Best Seller'
+      },
+      {
+        id: 19,
+        title: 'Indonesia: Bali & Lombok',
+        destination: 'Bali',
+        region: ['asia', 'indonesia', 'bali', 'lombok'],
+        type: 'Beach & Relaxation',
+        days: 10,
+        price: 1350,
+        rating: 4.7,
+        reviews: 328,
+        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80',
+        description: 'Terraced rice fields, jungle temples, world-class surf, and the pristine beaches of Lombok with the iconic Gili Islands just a boat ride away.',
+        highlights: ['10 Days', 'Villa & Hotel', 'Spa Included', 'Island Hopping']
+      },
+      {
+        id: 20,
+        title: 'Egypt: Nile Cruise & Pyramids',
+        destination: 'Egypt',
+        region: ['africa', 'middle east', 'egypt', 'cairo', 'luxor', 'aswan'],
+        type: 'Cultural & Heritage',
+        days: 9,
+        price: 2100,
+        rating: 4.6,
+        reviews: 118,
+        image: 'https://images.unsplash.com/photo-1539650116574-75c0c6d73f6e?w=500&q=80',
+        description: 'Stand before the Great Pyramids of Giza, cruise the legendary Nile between Luxor and Aswan, and explore temples built over 3,000 years ago.',
+        highlights: ['9 Days', 'Nile Cruise', 'All Monuments', 'Egyptologist Guide']
+      }
+    ];
+
+    let currentQuery = '';
+    let filteredTours = [];
+    let maxDays = 21;
+    let maxBudget = 5000;
+
+    function getQuery() {
+      const params = new URLSearchParams(window.location.search);
+      return (params.get('q') || '').trim();
+    }
+
+    function matchesQuery(tour, q) {
+      if (!q) return true;
+      const ql = q.toLowerCase();
+      return (
+        tour.destination.toLowerCase().includes(ql) ||
+        tour.title.toLowerCase().includes(ql) ||
+        tour.region.some(r => r.includes(ql)) ||
+        tour.type.toLowerCase().includes(ql)
+      );
+    }
+
+    function renderResults() {
+      const container = document.getElementById('results-container');
+      const countEl = document.getElementById('results-count');
+
+      if (filteredTours.length === 0) {
+        container.innerHTML = renderEmpty();
+        countEl.textContent = 'No results found';
+        return;
+      }
+
+      countEl.textContent = `${filteredTours.length} tour${filteredTours.length !== 1 ? 's' : ''} found`;
+
+      container.innerHTML = filteredTours.map(t => `
+        <article class="tour-card">
+          <img class="tour-card-img" src="${t.image}" alt="${t.title}" loading="lazy">
+          <div class="tour-card-body">
+            <div class="tour-card-meta">
+              <span class="tour-badge tour-badge-type">${t.type}</span>
+              ${t.badge ? `<span class="tour-badge tour-badge-hot">${t.badge}</span>` : ''}
+            </div>
+            <h3>${t.title}</h3>
+            <div class="tour-highlights">
+              ${t.highlights.map(h => `<span class="tour-highlight">✦ ${h}</span>`).join('')}
+            </div>
+            <p>${t.description}</p>
+            <div class="tour-card-footer">
+              <div>
+                <div class="tour-price">From $${t.price.toLocaleString()} <span>/ person</span></div>
+                <div class="tour-rating">
+                  <span class="stars">★★★★★</span>
+                  <strong>${t.rating}</strong>
+                  <span style="color:var(--gray)">(${t.reviews} reviews)</span>
+                </div>
+              </div>
+              <a href="contact.html?tour=${encodeURIComponent(t.title)}" class="btn btn-gold">Enquire Now</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function renderEmpty() {
+      return `
+        <div class="empty-state">
+          <div style="font-size:56px;margin-bottom:16px">🗺️</div>
+          <h2>No results for "${currentQuery}"</h2>
+          <p>We don't have a packaged tour for this destination yet — but we can create one just for you.</p>
+        </div>
+        <div class="expert-card">
+          <h2>Contact our ${currentQuery ? currentQuery + ' ' : ''}travel experts</h2>
+          <div class="expert-profile">
+            <img src="https://i.pravatar.cc/100?img=47" alt="Zafrina Hassen, Travel Expert">
+            <div class="expert-profile-info">
+              <strong>Zafrina Hassen</strong>
+              <span>Travel Expert at HighFlyer Travel</span>
+            </div>
+          </div>
+          <p>Our team specialises in crafting custom itineraries for any destination — even ones not listed here. Reach out and let us build your perfect trip from scratch.</p>
+          <ul class="expert-perks">
+            <li>Personalised itinerary built around your preferences</li>
+            <li>Best-value fares and accommodation</li>
+            <li>24/7 support throughout your journey</li>
+          </ul>
+          <div class="expert-actions">
+            <div class="expert-action-card">
+              <div class="action-icon">✉️</div>
+              <p>Send us your travel requirements and we'll get back to you within 24 hours.</p>
+              <a href="contact.html" class="btn btn-navy" style="width:100%;justify-content:center">Ask a Question</a>
+            </div>
+            <div class="expert-action-card">
+              <div class="action-icon">📞</div>
+              <p>Prefer to talk? Call us directly and we'll start planning right away.</p>
+              <a href="tel:+94779191001" class="btn btn-gold" style="width:100%;justify-content:center">+94 77 919 1001</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function applyFilters() {
+      filteredTours = allTours.filter(t =>
+        matchesQuery(t, currentQuery) &&
+        t.days <= maxDays &&
+        t.price <= maxBudget
+      );
+      renderResults();
+    }
+
+    function sortResults(by) {
+      if (by === 'price-asc') filteredTours.sort((a, b) => a.price - b.price);
+      else if (by === 'price-desc') filteredTours.sort((a, b) => b.price - a.price);
+      else if (by === 'duration') filteredTours.sort((a, b) => a.days - b.days);
+      else if (by === 'rating') filteredTours.sort((a, b) => b.rating - a.rating);
+      renderResults();
+    }
+
+    function updateDuration(val) {
+      maxDays = parseInt(val);
+      document.getElementById('duration-val').textContent = `Up to ${val} days`;
+      applyFilters();
+    }
+
+    function updateBudget(val) {
+      maxBudget = parseInt(val);
+      document.getElementById('budget-val').textContent = `Up to $${parseInt(val).toLocaleString()}`;
+      applyFilters();
+    }
+
+    function doSearch() {
+      const input = document.querySelector('.dest-input');
+      const q = input?.value.trim();
+      if (q) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('q', q);
+        window.history.pushState({}, '', url);
+        currentQuery = q;
+        applyFilters();
+        updateTitle();
+      }
+    }
+
+    function updateTitle() {
+      const titleEl = document.getElementById('results-title');
+      if (titleEl) {
+        titleEl.textContent = currentQuery
+          ? `${currentQuery} Tours & Packages`
+          : 'All Tours & Packages';
+      }
+      document.title = currentQuery
+        ? `${currentQuery} Tours | HighFlyer Travel`
+        : 'Search Tours | HighFlyer Travel';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      currentQuery = getQuery();
+
+      const destInput = document.querySelector('.dest-input');
+      if (destInput && currentQuery) destInput.value = currentQuery;
+
+      document.getElementById('count-all').textContent = allTours.length;
+      applyFilters();
+      updateTitle();
+    });
+  </script>
+</body>
+</html>

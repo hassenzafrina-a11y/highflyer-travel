@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | HighFlyer Travel</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    #auth-overlay {
+      position: fixed; inset: 0;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--purple) 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .auth-box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .auth-box img { width: 160px; margin: 0 auto 8px; }
+    .auth-box h2 { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .auth-box p { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+    .auth-input {
+      width: 100%; padding: 13px 16px;
+      border: 2px solid var(--light-gray);
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px; outline: none;
+      margin-bottom: 14px;
+      text-align: center;
+      letter-spacing: 3px;
+      transition: border-color 0.2s;
+    }
+    .auth-input:focus { border-color: var(--navy); }
+    .auth-error {
+      background: #FEE2E2; color: #DC2626;
+      padding: 10px; border-radius: 8px;
+      font-size: 13px; margin-bottom: 14px;
+      display: none;
+    }
+    #admin-app { display: none; width: 100%; }
+  </style>
+</head>
+<body style="background:#F0F2F8">
+
+  <!-- ─── LOGIN OVERLAY ─── -->
+  <div id="auth-overlay">
+    <div class="auth-box">
+      <img src="assets/logo-dark.svg" alt="HighFlyer Travel">
+      <h2>Admin Access</h2>
+      <p>Enter your password to continue</p>
+      <form onsubmit="handleLogin(event)">
+        <input type="password" id="admin-password" class="auth-input" placeholder="••••••••••••" autocomplete="current-password" required>
+        <div class="auth-error" id="auth-error">Incorrect password. Please try again.</div>
+        <button type="submit" class="btn btn-navy" style="width:100%;justify-content:center;padding:14px">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="admin-app">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" role="navigation" aria-label="Admin navigation">
+      <div class="admin-sidebar-header">
+        <img src="assets/logo-light.svg" alt="HighFlyer Travel" style="width:150px;margin-bottom:4px">
+        <p>Admin Dashboard</p>
+      </div>
+      <nav class="admin-nav">
+        <div class="admin-nav-item active" data-panel="dashboard">
+          <span class="nav-icon">📊</span> Dashboard
+        </div>
+        <div class="admin-nav-item" data-panel="posts">
+          <span class="nav-icon">📝</span> Blog Posts
+        </div>
+        <div class="admin-nav-item" data-panel="new">
+          <span class="nav-icon">✏️</span> New Post
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.1);margin:16px 24px"></div>
+        <a href="index.html" style="display:flex;align-items:center;gap:12px;padding:12px 24px;color:rgba(255,255,255,0.5);font-size:14px;transition:color 0.2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          <span>🌐</span> View Website
+        </a>
+        <a href="blog.html" target="_blank" style="display:flex;align-items:center;gap:12px;padding:12px 24px;color:rgba(255,255,255,0.5);font-size:14px;transition:color 0.2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          <span>📖</span> View Blog
+        </a>
+        <div style="height:1px;background:rgba(255,255,255,0.1);margin:16px 24px"></div>
+        <div onclick="logout()" style="display:flex;align-items:center;gap:12px;padding:12px 24px;color:rgba(255,255,255,0.5);font-size:14px;cursor:pointer;transition:color 0.2s" onmouseover="this.style.color='#EF4444'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">
+          <span>🔒</span> Logout
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main -->
+    <div class="admin-main">
+
+      <!-- Topbar -->
+      <div class="admin-topbar">
+        <h1 id="topbar-title">Dashboard</h1>
+        <div style="display:flex;align-items:center;gap:16px">
+          <button class="btn btn-gold" style="padding:10px 20px;font-size:13px" onclick="showPanel('new')">+ New Post</button>
+          <img src="https://i.pravatar.cc/36?img=47" alt="Admin" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--gold)">
+        </div>
+      </div>
+
+      <div class="admin-content">
+
+        <!-- ─── DASHBOARD ─── -->
+        <div class="admin-panel active" id="panel-dashboard">
+
+          <div class="admin-stats">
+            <div class="admin-stat-card">
+              <p style="font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Total Posts</p>
+              <h3 id="stat-total">0</h3>
+              <p>All blog posts</p>
+            </div>
+            <div class="admin-stat-card" style="border-top-color:var(--purple)">
+              <p style="font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Published</p>
+              <h3 id="stat-published">0</h3>
+              <p>Live on site</p>
+            </div>
+            <div class="admin-stat-card" style="border-top-color:#F59E0B">
+              <p style="font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Drafts</p>
+              <h3 id="stat-drafts">0</h3>
+              <p>Unpublished</p>
+            </div>
+            <div class="admin-stat-card" style="border-top-color:#10B981">
+              <p style="font-size:12px;font-weight:600;color:var(--gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">Categories</p>
+              <h3 id="stat-categories">0</h3>
+              <p>Topic areas</p>
+            </div>
+          </div>
+
+          <div class="admin-panel active" style="display:block">
+            <div class="admin-panel-header">
+              <h2>Recent Posts</h2>
+              <button class="btn btn-navy" style="padding:8px 16px;font-size:13px" onclick="showPanel('posts')">View All</button>
+            </div>
+            <table class="posts-table" role="table" aria-label="Recent blog posts">
+              <thead>
+                <tr>
+                  <th>Post</th>
+                  <th>Category</th>
+                  <th>Status</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="recent-posts-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ─── ALL POSTS ─── -->
+        <div class="admin-panel" id="panel-posts">
+          <div class="admin-panel-header">
+            <h2>All Blog Posts</h2>
+            <button class="btn btn-gold" style="padding:8px 16px;font-size:13px" onclick="showPanel('new')">+ New Post</button>
+          </div>
+          <div style="padding:0 0 12px">
+            <input type="text" placeholder="Search posts…" oninput="searchPosts(this.value)"
+              style="margin:16px 20px 4px;padding:10px 16px;border:2px solid var(--light-gray);border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;outline:none;width:calc(100% - 40px)">
+          </div>
+          <table class="posts-table" role="table" aria-label="All blog posts">
+            <thead>
+              <tr>
+                <th>Post</th>
+                <th>Category</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="posts-table-body"></tbody>
+          </table>
+        </div>
+
+        <!-- ─── NEW / EDIT POST ─── -->
+        <div class="admin-panel" id="panel-new">
+          <div class="admin-panel-header">
+            <h2 id="editor-heading">Create New Post</h2>
+            <div style="display:flex;gap:10px">
+              <button class="btn btn-outline" style="color:var(--navy);border-color:var(--light-gray);padding:8px 16px;font-size:13px" onclick="savePost(false)">Save Draft</button>
+              <button class="btn btn-gold" style="padding:8px 16px;font-size:13px" onclick="savePost(true)">Publish Post</button>
+            </div>
+          </div>
+          <div class="editor-form">
+            <div class="form-row" style="margin-bottom:0">
+              <div class="form-group" style="grid-column:1/-1">
+                <label for="post-title">Post Title <span style="color:#EF4444">*</span></label>
+                <input type="text" id="post-title" placeholder="Enter a compelling title…" style="font-size:18px;font-weight:600">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="post-category">Category <span style="color:#EF4444">*</span></label>
+                <select id="post-category">
+                  <option value="">Select category</option>
+                  <option>Destinations</option>
+                  <option>Travel Tips</option>
+                  <option>Sri Lanka</option>
+                  <option>Tours</option>
+                  <option>Airlines & Flights</option>
+                  <option>Travel Stories</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="post-author">Author</label>
+                <input type="text" id="post-author" value="Highflyer Travel" placeholder="Author name">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="post-date">Publish Date</label>
+                <input type="date" id="post-date">
+              </div>
+              <div class="form-group">
+                <label for="post-status">Status</label>
+                <select id="post-status">
+                  <option value="published">Published</option>
+                  <option value="draft">Draft</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="post-tags">Tags <span style="color:var(--gray);font-weight:400;font-size:12px">(comma separated)</span></label>
+              <input type="text" id="post-tags" placeholder="e.g. Bali, Asia, Beach, Budget">
+            </div>
+
+            <div class="form-group">
+              <label for="post-excerpt">Excerpt <span style="color:var(--gray);font-weight:400;font-size:12px">(short description for listings)</span></label>
+              <textarea id="post-excerpt" rows="3" placeholder="A short, compelling description that appears in blog listings and search results…"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="post-image">Featured Image URL</label>
+              <input type="text" id="post-image" placeholder="https://images.unsplash.com/…" oninput="updateImagePreview(this.value)">
+              <div class="image-preview-box" style="margin-top:10px">
+                <img src="" alt="Featured image preview" id="preview-img">
+                <div class="image-preview-placeholder">
+                  <span>🖼️</span>
+                  <p>Paste an image URL above to preview</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Content <span style="color:#EF4444">*</span></label>
+              <div class="editor-toolbar" role="toolbar" aria-label="Text formatting">
+                <button class="toolbar-btn" onclick="formatText('bold')" title="Bold"><strong>B</strong></button>
+                <button class="toolbar-btn" onclick="formatText('italic')" title="Italic"><em>I</em></button>
+                <button class="toolbar-btn" onclick="formatText('underline')" title="Underline"><u>U</u></button>
+                <button class="toolbar-btn" onclick="formatText('formatBlock','h2')" title="Heading 2">H2</button>
+                <button class="toolbar-btn" onclick="formatText('formatBlock','h3')" title="Heading 3">H3</button>
+                <button class="toolbar-btn" onclick="formatText('insertUnorderedList')" title="Bullet list">• List</button>
+                <button class="toolbar-btn" onclick="formatText('insertOrderedList')" title="Numbered list">1. List</button>
+                <button class="toolbar-btn" onclick="insertLink()" title="Insert link">🔗 Link</button>
+                <button class="toolbar-btn" onclick="insertImage()" title="Insert image">🖼 Image</button>
+                <button class="toolbar-btn" onclick="formatText('formatBlock','blockquote')" title="Blockquote">" Quote</button>
+                <button class="toolbar-btn" onclick="formatText('removeFormat')" title="Clear formatting">✕ Clear</button>
+              </div>
+              <div class="content-editor" id="post-content" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Post content"
+                style="min-height:400px"></div>
+            </div>
+
+            <div style="display:flex;gap:12px;justify-content:flex-end;padding-top:8px">
+              <button class="btn" style="background:var(--light);color:var(--gray);padding:12px 24px" onclick="showPanel('posts')">Cancel</button>
+              <button class="btn btn-outline" style="color:var(--navy);border-color:var(--navy);padding:12px 24px" onclick="savePost(false)">Save as Draft</button>
+              <button class="btn btn-gold" style="padding:12px 28px" onclick="savePost(true)">Publish Post ✈</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Confirmation Modal -->
+  <div class="modal-overlay" id="delete-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <div style="font-size:44px;margin-bottom:12px">🗑️</div>
+      <h3 id="modal-title">Delete Post?</h3>
+      <p>This action cannot be undone. The post will be permanently removed.</p>
+      <div class="modal-actions">
+        <button class="btn" style="background:var(--light);color:var(--gray);padding:10px 24px" onclick="cancelDelete()">Cancel</button>
+        <button class="btn" style="background:#EF4444;color:white;padding:10px 24px" onclick="doDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- end admin-layout -->
+  </div><!-- end admin-app -->
+
+  <script src="js/blog.js"></script>
+  <script src="js/admin.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initBlogData();
+      initAdminAuth();
+    });
+
+    function searchPosts(query) {
+      const q = query.toLowerCase();
+      const posts = getPosts();
+      const filtered = q ? posts.filter(p =>
+        p.title.toLowerCase().includes(q) ||
+        p.category.toLowerCase().includes(q) ||
+        p.author.toLowerCase().includes(q)
+      ) : posts;
+
+      const tbody = document.getElementById('posts-table-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = filtered.map(p => `
+        <tr>
+          <td>
+            <div style="display:flex;align-items:center;gap:12px">
+              <img class="post-thumb" src="${p.image || 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=120&q=60'}" alt="">
+              <div>
+                <strong style="font-size:14px;display:block">${p.title}</strong>
+                <span style="font-size:12px;color:var(--gray)">${(p.excerpt || '').substring(0, 60)}…</span>
+              </div>
+            </div>
+          </td>
+          <td>${p.category}</td>
+          <td>${p.author}</td>
+          <td><span class="status-badge ${p.published ? 'status-published' : 'status-draft'}">${p.published ? 'Published' : 'Draft'}</span></td>
+          <td>${formatDate(p.date)}</td>
+          <td>
+            <div class="table-actions">
+              <button class="table-btn table-btn-edit" onclick="editPost('${p.id}')">Edit</button>
+              <button class="table-btn table-btn-view" onclick="viewPost('${p.id}')">View</button>
+              <button class="table-btn table-btn-delete" onclick="confirmDelete('${p.id}')">Delete</button>
+            </div>
+          </td>
+        </tr>
+      `).join('') || '<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:30px">No posts found.</td></tr>';
+    }
+  </script>
+</body>
+</html>

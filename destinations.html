@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Destinations | HighFlyer Travel — Explore the World</title>
+  <meta name="description" content="Explore destinations across Asia, Europe, the Middle East, and beyond with HighFlyer Travel. Find your next adventure — flights and tours from Sri Lanka.">
+  <meta name="keywords" content="travel destinations, holiday packages Sri Lanka, Asia tours, Europe travel, Maldives, Dubai, Japan, Bali, Thailand, Malaysia, travel agent Sri Lanka">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.highflyertravel.lk/destinations.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Destinations | HighFlyer Travel">
+  <meta property="og:description" content="Explore hundreds of destinations worldwide with HighFlyer Travel — your simplified travel partner from Sri Lanka.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80">
+  <meta property="og:url" content="https://www.highflyertravel.lk/destinations.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Destinations | HighFlyer Travel">
+  <meta name="twitter:description" content="Explore hundreds of destinations worldwide with HighFlyer Travel.">
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Travel Destinations — HighFlyer Travel",
+    "description": "Explore worldwide travel destinations offered by HighFlyer Travel, Sri Lanka.",
+    "url": "https://www.highflyertravel.lk/destinations.html",
+    "provider": {"@type": "TravelAgency", "name": "HighFlyer Travel"}
+  }
+  </script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    .dest-full-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .dest-full-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
+      display: none;
+    }
+
+    .dest-full-card.visible { display: block; }
+
+    .dest-full-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .dest-full-card:hover img { transform: scale(1.08); }
+
+    .dest-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.75) 100%);
+    }
+
+    .dest-card-info {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px; color: var(--white);
+    }
+
+    .dest-card-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .dest-card-info p { font-size: 12px; opacity: 0.8; }
+    .dest-card-info .continent-tag {
+      display: inline-block;
+      background: rgba(245,166,35,0.8);
+      color: var(--dark);
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="HighFlyer Travel Home">
+      <img src="assets/logo-dark.svg" alt="HighFlyer Travel — Simplified Travel" style="height:42px">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="destinations.html" class="active">Destinations</a></li>
+      <li><a href="inbound.html">Inbound</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+
+    <header class="page-hero" role="banner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">›</span>
+        <span>Destinations</span>
+      </nav>
+      <h1>The World is Your Destination</h1>
+      <p>From tropical islands to ancient cities — wherever you want to go, we'll get you there.</p>
+    </header>
+
+    <section aria-labelledby="destinations-heading">
+      <div class="section-header animate-in">
+        <span class="section-tag">Explore</span>
+        <h2 id="destinations-heading">Popular Destinations</h2>
+        <p>Filter by region or browse all of our most loved destinations.</p>
+      </div>
+
+      <div class="continent-filter" role="group" aria-label="Filter destinations by region">
+        <button class="filter-btn active" data-continent="All" onclick="filterDests(this)">All</button>
+        <button class="filter-btn" data-continent="Asia" onclick="filterDests(this)">Asia</button>
+        <button class="filter-btn" data-continent="Middle East" onclick="filterDests(this)">Middle East</button>
+        <button class="filter-btn" data-continent="Europe" onclick="filterDests(this)">Europe</button>
+        <button class="filter-btn" data-continent="Indian Ocean" onclick="filterDests(this)">Indian Ocean</button>
+      </div>
+
+      <div class="dest-full-grid" id="dest-grid">
+
+        <article class="dest-full-card visible" data-continent="Asia">
+          <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali temple surrounded by tropical jungle at sunset" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Asia</div>
+            <h3>Bali, Indonesia</h3>
+            <p>Island of the Gods</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Asia">
+          <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80" alt="Tokyo city lights and skyline at night" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Asia</div>
+            <h3>Tokyo, Japan</h3>
+            <p>Tradition Meets Tomorrow</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Asia">
+          <img src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?w=600&q=80" alt="Bangkok temple with golden spires" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Asia</div>
+            <h3>Bangkok, Thailand</h3>
+            <p>City of Angels</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Asia">
+          <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80" alt="Singapore city skyline at night with Marina Bay Sands" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Asia</div>
+            <h3>Singapore</h3>
+            <p>The Lion City</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Asia">
+          <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80" alt="Petronas Twin Towers in Kuala Lumpur Malaysia" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Asia</div>
+            <h3>Kuala Lumpur, Malaysia</h3>
+            <p>Where East Meets West</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Middle East">
+          <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="Dubai skyline with Burj Khalifa illuminated at night" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Middle East</div>
+            <h3>Dubai, UAE</h3>
+            <p>City of the Future</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Middle East">
+          <img src="https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?w=600&q=80" alt="Abu Dhabi Sheikh Zayed Grand Mosque" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Middle East</div>
+            <h3>Abu Dhabi, UAE</h3>
+            <p>Where Heritage Shines</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Europe">
+          <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=600&q=80" alt="Eiffel Tower in Paris at sunset" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Europe</div>
+            <h3>Paris, France</h3>
+            <p>The City of Light</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Europe">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=600&q=80" alt="Amalfi coast Italy with colourful cliffside villages" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Europe</div>
+            <h3>Amalfi Coast, Italy</h3>
+            <p>Mediterranean Magic</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Europe">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Santorini Greece white buildings and blue domes" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Europe</div>
+            <h3>Santorini, Greece</h3>
+            <p>Aegean Dream</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Indian Ocean">
+          <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80" alt="Maldives overwater bungalow with turquoise lagoon" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Indian Ocean</div>
+            <h3>Maldives</h3>
+            <p>Paradise on Earth</p>
+          </div>
+        </article>
+
+        <article class="dest-full-card visible" data-continent="Indian Ocean">
+          <img src="https://images.unsplash.com/photo-1593693397690-362cb9666fc2?w=600&q=80" alt="Sigiriya Rock Fortress Sri Lanka surrounded by jungle" loading="lazy">
+          <div class="dest-card-overlay"></div>
+          <div class="dest-card-info">
+            <div class="continent-tag">Indian Ocean</div>
+            <h3>Sri Lanka</h3>
+            <p>Pearl of the Indian Ocean</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="cta-banner" aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Don't See Your Dream Destination?</h2>
+      <p>We fly to hundreds of destinations worldwide. Contact us and we'll make it happen.</p>
+      <a href="contact.html" class="btn btn-gold">Enquire Now</a>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo-light.svg" alt="HighFlyer Travel" style="height:36px;margin-bottom:14px">
+        <p>Simplified travel experiences for every kind of explorer. Based in Sri Lanka, connecting you to the world.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/highflyer.travel/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">📸</a>
+          <a href="https://www.facebook.com/people/HighFlyer-Travel/61582590789496/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">📘</a>
+          <a href="https://wa.me/94779191001" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="inbound.html">Inbound Sri Lanka</a></li>
+          <li><a href="blog.html">Travel Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span>📞</span><span><a href="tel:+94779191001">+94 77 919 1001</a></span></li>
+          <li><span>✉️</span><span><a href="mailto:zafrinahassen@hotmail.com">zafrinahassen@hotmail.com</a></span></li>
+          <li><span>📍</span><span>Sri Lanka</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 HighFlyer Travel. All rights reserved.</p>
+      <p>Simplified Travel — Sri Lanka</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    function filterDests(btn) {
+      const continent = btn.dataset.continent;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.dest-full-card').forEach(card => {
+        const show = continent === 'All' || card.dataset.continent === continent;
+        card.classList.toggle('visible', show);
+      });
+    }
+  </script>
+</body>
+</html>
