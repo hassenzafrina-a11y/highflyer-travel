@@ -22,7 +22,7 @@
   --radius-lg:     22px;
   --shadow:        0 4px 24px rgba(92,13,138,0.10);
   --card-shadow:   0 2px 16px rgba(0,0,0,0.09);
-  --nav-h:         110px;
+  --nav-h:         72px;
   /* backwards compat */
   --navy: #5C0D8A;
   --purple: #3D0960;
@@ -80,7 +80,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 .navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.10); }
 
 .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
-.nav-logo img { height: 100px; width: auto; }
+.nav-logo img { height: 60px; width: auto; }
 
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .nav-links a {
