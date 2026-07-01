@@ -72,12 +72,15 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   height: var(--nav-h);
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 40px;
-  background: var(--white);
-  box-shadow: 0 1px 0 var(--light-gray);
+  background: transparent;
+  box-shadow: none;
   z-index: 1000;
-  transition: box-shadow 0.3s;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
 }
-.navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.10); }
+.navbar.scrolled {
+  background: var(--white);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+}
 
 .nav-logo { display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
 .nav-logo img { height: 65px; width: auto; }
@@ -86,15 +89,19 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .nav-links a {
   padding: 8px 14px; font-size: 14px; font-weight: 600;
-  color: var(--dark); border-radius: 8px;
+  color: var(--white); border-radius: 8px;
   transition: all 0.2s; text-decoration: none;
 }
-.nav-links a:hover, .nav-links a.active { color: var(--primary); background: var(--light); }
-.nav-links .nav-cta { background: var(--primary); color: var(--white); border-radius: 50px; padding: 10px 22px; margin-left: 6px; }
+.navbar.scrolled .nav-links a { color: var(--dark); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); background: rgba(255,255,255,0.12); }
+.navbar.scrolled .nav-links a:hover, .navbar.scrolled .nav-links a.active { color: var(--primary); background: var(--light); }
+.nav-links .nav-cta { background: var(--gold); color: var(--dark); border-radius: 50px; padding: 10px 22px; margin-left: 6px; font-weight: 700; }
+.navbar.scrolled .nav-links .nav-cta { background: var(--primary); color: var(--white); }
 .nav-links .nav-cta:hover, .nav-links .nav-cta.active { background: var(--primary-dark); color: var(--white); }
 
 .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; cursor: pointer; }
-.nav-toggle span { width: 24px; height: 2px; background: var(--dark); border-radius: 2px; display: block; transition: all 0.3s; }
+.nav-toggle span { width: 24px; height: 2px; background: var(--white); border-radius: 2px; display: block; transition: all 0.3s; }
+.navbar.scrolled .nav-toggle span { background: var(--dark); }
 
 /* ─── HERO ─── */
 .hero {
