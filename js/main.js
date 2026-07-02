@@ -179,6 +179,12 @@ function initSearch() {
   }
 }
 
+function doSearch() {
+  const dest = document.getElementById('dest-input')?.value?.trim();
+  if (!dest) { document.getElementById('dest-input')?.focus(); return; }
+  window.location.href = `search.html?q=${encodeURIComponent(dest)}`;
+}
+
 function selectDest(name) {
   const input = document.getElementById('dest-input');
   const dropdown = document.getElementById('dest-dropdown-list');
@@ -258,7 +264,7 @@ function changeCount(type, dir) {
 
 function applyTravelers() {
   const val = `${adults} Adult${adults !== 1 ? 's' : ''}${children > 0 ? `, ${children} Child${children !== 1 ? 'ren' : ''}` : ''}`;
-  const el = document.querySelector('.travelers-value');
+  const el = document.getElementById('travelers-display');
   if (el) el.textContent = val;
   document.getElementById('travelers-dropdown')?.classList.remove('active');
 }
