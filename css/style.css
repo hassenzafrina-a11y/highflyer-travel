@@ -116,11 +116,13 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   background-image: url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=80');
   background-size: cover; background-position: center;
   transform: scale(1.05); transition: transform 8s ease;
+  pointer-events: none;
 }
 .hero-bg.loaded { transform: scale(1); }
 .hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to bottom, rgba(30,0,50,0.45) 0%, rgba(30,0,50,0.60) 100%);
+  pointer-events: none;
 }
 .hero-content { position: relative; z-index: 2; max-width: 860px; padding: 0 24px; }
 
