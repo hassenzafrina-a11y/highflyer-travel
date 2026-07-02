@@ -201,6 +201,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   min-width: 320px; max-height: 320px; overflow-y: auto;
   display: none; z-index: 500;
 }
+.dest-dropdown.active, .search-dropdown.active,
 .dest-dropdown.show, .search-dropdown.show { display: block; }
 
 .dest-item { display: flex; align-items: center; gap: 12px; padding: 12px 20px; cursor: pointer; transition: background 0.15s; }
@@ -216,6 +217,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   box-shadow: 0 8px 40px rgba(0,0,0,0.15);
   min-width: 280px; padding: 20px; display: none; z-index: 500;
 }
+.date-dropdown.active, .travelers-dropdown.active,
 .date-dropdown.show, .travelers-dropdown.show { display: block; }
 
 .month-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
