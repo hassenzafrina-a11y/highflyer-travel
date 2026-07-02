@@ -57,12 +57,12 @@ const destinations = [
 ];
 
 function initSearch() {
-  const dateField = document.querySelector('.date-field');
-  const travelersField = document.querySelector('.travelers-field');
-  const dateDropdown = document.querySelector('.date-dropdown');
-  const travelersDropdown = document.querySelector('.travelers-dropdown');
-  const destInput = document.querySelector('.dest-input');
-  const destDropdown = document.querySelector('.dest-dropdown');
+  const dateField = document.getElementById('date-field');
+  const travelersField = document.getElementById('travelers-field');
+  const dateDropdown = document.getElementById('date-dropdown');
+  const travelersDropdown = document.getElementById('travelers-dropdown');
+  const destInput = document.getElementById('dest-input');
+  const destDropdown = document.getElementById('dest-dropdown-list');
 
   if (!dateField) return;
 
@@ -169,9 +169,9 @@ function initSearch() {
   const searchBtn = document.querySelector('.search-btn');
   if (searchBtn) {
     searchBtn.addEventListener('click', () => {
-      const dest = document.querySelector('.dest-input')?.value?.trim();
+      const dest = document.getElementById('dest-input')?.value?.trim();
       if (!dest) {
-        document.querySelector('.dest-input')?.focus();
+        document.getElementById('dest-input')?.focus();
         return;
       }
       window.location.href = `search.html?q=${encodeURIComponent(dest)}`;
@@ -180,14 +180,14 @@ function initSearch() {
 }
 
 function selectDest(name) {
-  const input = document.querySelector('.dest-input');
-  const dropdown = document.querySelector('.dest-dropdown');
+  const input = document.getElementById('dest-input');
+  const dropdown = document.getElementById('dest-dropdown-list');
   if (input) input.value = name;
   if (dropdown) dropdown.classList.remove('active');
 }
 
 function renderDateDropdown() {
-  const dropdown = document.querySelector('.date-dropdown');
+  const dropdown = document.getElementById('date-dropdown');
   if (!dropdown) return;
 
   dropdown.innerHTML = `
@@ -212,13 +212,13 @@ function changeYear(dir) {
 function selectMonth(i) {
   selectedMonth = i;
   renderDateDropdown();
-  const dateValue = document.querySelector('.date-value');
+  const dateValue = document.getElementById('date-display');
   if (dateValue) dateValue.textContent = `${months[i]} ${selectedYear}`;
-  document.querySelector('.date-dropdown')?.classList.remove('active');
+  document.getElementById('date-dropdown')?.classList.remove('active');
 }
 
 function renderTravelersDropdown() {
-  const dropdown = document.querySelector('.travelers-dropdown');
+  const dropdown = document.getElementById('travelers-dropdown');
   if (!dropdown) return;
 
   dropdown.innerHTML = `
@@ -260,7 +260,7 @@ function applyTravelers() {
   const val = `${adults} Adult${adults !== 1 ? 's' : ''}${children > 0 ? `, ${children} Child${children !== 1 ? 'ren' : ''}` : ''}`;
   const el = document.querySelector('.travelers-value');
   if (el) el.textContent = val;
-  document.querySelector('.travelers-dropdown')?.classList.remove('active');
+  document.getElementById('travelers-dropdown')?.classList.remove('active');
 }
 
 // ─── SCROLL ANIMATIONS ────────────────────────
