@@ -179,6 +179,26 @@ function initSearch() {
   }
 }
 
+function toggleDateDropdown(e) {
+  e.stopPropagation();
+  var dd = document.getElementById('date-dropdown');
+  var td = document.getElementById('travelers-dropdown');
+  var dest = document.getElementById('dest-dropdown-list');
+  td && td.classList.remove('active');
+  dest && dest.classList.remove('active');
+  dd && dd.classList.toggle('active');
+}
+
+function toggleTravelersDropdown(e) {
+  e.stopPropagation();
+  var dd = document.getElementById('date-dropdown');
+  var td = document.getElementById('travelers-dropdown');
+  var dest = document.getElementById('dest-dropdown-list');
+  dd && dd.classList.remove('active');
+  dest && dest.classList.remove('active');
+  td && td.classList.toggle('active');
+}
+
 function doSearch() {
   const dest = document.getElementById('dest-input')?.value?.trim();
   if (!dest) { document.getElementById('dest-input')?.focus(); return; }

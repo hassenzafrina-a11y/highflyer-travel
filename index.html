@@ -39,7 +39,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
@@ -80,36 +80,36 @@
               <input type="text" id="dest-input" placeholder="Enter destination" autocomplete="off">
               <div class="dest-dropdown" id="dest-dropdown-list" role="listbox"></div>
             </div>
-            <div class="search-field" id="date-field">
+            <div class="search-field" id="date-field" onclick="toggleDateDropdown(event)">
               <label>WHEN?</label>
               <div class="search-value" id="date-display">Select month</div>
               <div class="date-dropdown" id="date-dropdown">
                 <div class="year-nav">
-                  <button onclick="changeYear(-1)">‹</button>
+                  <button onclick="changeYear(-1);event.stopPropagation()">‹</button>
                   <span id="year-display">2026</span>
-                  <button onclick="changeYear(1)">›</button>
+                  <button onclick="changeYear(1);event.stopPropagation()">›</button>
                 </div>
                 <div class="month-grid" id="month-grid"></div>
               </div>
             </div>
-            <div class="search-field" id="travelers-field" style="border-right:none">
+            <div class="search-field" id="travelers-field" style="border-right:none" onclick="toggleTravelersDropdown(event)">
               <label>TRAVELERS</label>
               <div class="search-value" id="travelers-display">2 Adults</div>
               <div class="travelers-dropdown" id="travelers-dropdown">
                 <div class="traveler-row">
                   <div class="traveler-label"><strong>Adults</strong><span>Age 18+</span></div>
                   <div class="counter">
-                    <button class="counter-btn" onclick="updateCount('adults',-1)">−</button>
+                    <button class="counter-btn" onclick="changeCount('adults',-1);event.stopPropagation()">−</button>
                     <span class="counter-val" id="adults-count">2</span>
-                    <button class="counter-btn" onclick="updateCount('adults',1)">+</button>
+                    <button class="counter-btn" onclick="changeCount('adults',1);event.stopPropagation()">+</button>
                   </div>
                 </div>
                 <div class="traveler-row">
                   <div class="traveler-label"><strong>Children</strong><span>Age 2–17</span></div>
                   <div class="counter">
-                    <button class="counter-btn" onclick="updateCount('children',-1)">−</button>
+                    <button class="counter-btn" onclick="changeCount('children',-1);event.stopPropagation()">−</button>
                     <span class="counter-val" id="children-count">0</span>
-                    <button class="counter-btn" onclick="updateCount('children',1)">+</button>
+                    <button class="counter-btn" onclick="changeCount('children',1);event.stopPropagation()">+</button>
                   </div>
                 </div>
               </div>
@@ -474,7 +474,7 @@
 
   <a href="https://wa.me/94779191001" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
 
-  <script src="js/main.js?v=2"></script>
+  <script src="js/main.js?v=3"></script>
   <script src="js/blog.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
