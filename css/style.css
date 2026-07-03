@@ -108,8 +108,10 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   min-height: 100vh;
   position: relative;
   display: flex; align-items: center; justify-content: center; text-align: center;
-  overflow: hidden;
   padding-top: var(--nav-h);
+}
+.hero-media {
+  position: absolute; inset: 0; overflow: hidden;
 }
 .hero-bg {
   position: absolute; inset: 0;
