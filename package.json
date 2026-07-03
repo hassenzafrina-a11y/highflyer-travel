@@ -4,6 +4,6 @@
   "description": "HighFlyer Travel — Simplified Travel",
   "scripts": {
     "build": "echo 'Static site, no build needed'",
-    "start": "npx serve ."
+    "start": "npx serve . --listen ${PORT:-3000} --no-clipboard"
   }
 }
