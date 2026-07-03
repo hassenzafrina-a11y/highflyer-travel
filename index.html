@@ -39,7 +39,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=3">
+  <link rel="stylesheet" href="css/style.css?v=4">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
@@ -74,7 +74,7 @@
         <p>Flight tickets, curated tours and unforgettable journeys — simplified for you by a team that lives and breathes travel.</p>
 
         <div class="search-wrap" role="search" aria-label="Search tours">
-          <div class="search-bar">
+          <div class="search-bar" onclick="event.stopPropagation()">
             <div class="search-field" id="dest-field">
               <label for="dest-input">WHERE TO?</label>
               <input type="text" id="dest-input" placeholder="Enter destination" autocomplete="off">
@@ -474,7 +474,7 @@
 
   <a href="https://wa.me/94779191001" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
   <script src="js/blog.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
