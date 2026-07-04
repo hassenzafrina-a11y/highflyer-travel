@@ -216,22 +216,32 @@ function renderDateDropdown() {
   const dropdown = document.getElementById('date-dropdown');
   if (!dropdown) return;
 
+  const now = new Date();
+  const curYear = now.getFullYear();
+  const curMonth = now.getMonth();
+  const isPastYear = selectedYear < curYear;
+  const canGoBack = selectedYear > curYear;
+
   dropdown.innerHTML = `
     <div class="year-nav">
-      <button onclick="changeYear(-1)">&#8249;</button>
+      <button onclick="changeYear(-1);event.stopPropagation()" ${!canGoBack ? 'disabled' : ''}>&#8249;</button>
       <strong id="year-label">${selectedYear}</strong>
-      <button onclick="changeYear(1)">&#8250;</button>
+      <button onclick="changeYear(1);event.stopPropagation()">&#8250;</button>
     </div>
     <div class="month-grid">
-      ${months.map((m, i) => `
-        <button class="month-btn ${selectedMonth === i ? 'selected' : ''}" onclick="selectMonth(${i})">${m}</button>
-      `).join('')}
+      ${months.map((m, i) => {
+        const isPast = isPastYear || (selectedYear === curYear && i < curMonth);
+        return `<button class="month-btn ${selectedMonth === i ? 'selected' : ''} ${isPast ? 'disabled' : ''}" ${isPast ? 'disabled' : `onclick="selectMonth(${i})"`}>${m}</button>`;
+      }).join('')}
     </div>
   `;
 }
 
 function changeYear(dir) {
-  selectedYear += dir;
+  const curYear = new Date().getFullYear();
+  const next = selectedYear + dir;
+  if (next < curYear) return;
+  selectedYear = next;
   renderDateDropdown();
 }
 

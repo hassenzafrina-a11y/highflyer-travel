@@ -230,6 +230,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 }
 .month-btn:hover { background: var(--light); border-color: var(--primary); color: var(--primary); }
 .month-btn.selected { background: var(--primary); color: var(--white); border-color: var(--primary); }
+.month-btn.disabled, .month-btn:disabled { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
 
 .year-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; font-weight: 700; color: var(--dark); }
 .year-nav button { background: var(--light); border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; color: var(--primary); display: flex; align-items: center; justify-content: center; cursor: pointer; }
