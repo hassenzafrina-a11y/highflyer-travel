@@ -255,9 +255,9 @@ function renderTravelersDropdown() {
           <div class="counter-sub">Age 18+</div>
         </div>
         <div class="counter-controls">
-          <button class="counter-btn" onclick="changeCount('adults', -1)">−</button>
+          <button class="counter-btn" onclick="changeCount('adults', -1);event.stopPropagation()">−</button>
           <span class="counter-num" id="adults-count">${adults}</span>
-          <button class="counter-btn" onclick="changeCount('adults', 1)">+</button>
+          <button class="counter-btn" onclick="changeCount('adults', 1);event.stopPropagation()">+</button>
         </div>
       </div>
       <div class="counter-row">
@@ -266,12 +266,12 @@ function renderTravelersDropdown() {
           <div class="counter-sub">Age 2–17</div>
         </div>
         <div class="counter-controls">
-          <button class="counter-btn" onclick="changeCount('children', -1)">−</button>
+          <button class="counter-btn" onclick="changeCount('children', -1);event.stopPropagation()">−</button>
           <span class="counter-num" id="children-count">${children}</span>
-          <button class="counter-btn" onclick="changeCount('children', 1)">+</button>
+          <button class="counter-btn" onclick="changeCount('children', 1);event.stopPropagation()">+</button>
         </div>
       </div>
-      <button class="btn btn-navy" style="width:100%;justify-content:center" onclick="applyTravelers()">Done</button>
+      <button class="btn btn-navy" style="width:100%;justify-content:center" onclick="applyTravelers();event.stopPropagation()">Done</button>
     </div>
   `;
 }
