@@ -231,7 +231,7 @@ function renderDateDropdown() {
     <div class="month-grid">
       ${months.map((m, i) => {
         const isPast = isPastYear || (selectedYear === curYear && i < curMonth);
-        return `<button class="month-btn ${selectedMonth === i ? 'selected' : ''} ${isPast ? 'disabled' : ''}" ${isPast ? 'disabled' : `onclick="selectMonth(${i})"`}>${m}</button>`;
+        return `<button class="month-btn ${selectedMonth === i ? 'selected' : ''} ${isPast ? 'disabled' : ''}" onclick="selectMonth(${i})">${m}</button>`;
       }).join('')}
     </div>
   `;
@@ -246,6 +246,10 @@ function changeYear(dir) {
 }
 
 function selectMonth(i) {
+  const now = new Date();
+  const curYear = now.getFullYear();
+  const curMonth = now.getMonth();
+  if (selectedYear === curYear && i < curMonth) selectedYear = curYear + 1;
   selectedMonth = i;
   renderDateDropdown();
   const dateValue = document.getElementById('date-display');
