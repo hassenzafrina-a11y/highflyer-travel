@@ -31,29 +31,66 @@ let selectedMonth = null;
 let adults = 2;
 let children = 0;
 
-// Destination data
-const destinations = [
-  { name: 'Asia',           type: 'Continent', icon: '🌏', sub: '' },
-  { name: 'Europe',         type: 'Continent', icon: '🌍', sub: '' },
-  { name: 'Middle East',    type: 'Region',    icon: '🕌', sub: '' },
-  { name: 'Indian Ocean',   type: 'Region',    icon: '🌊', sub: '' },
-  { name: 'Bali',           type: 'Island',    icon: '🏝️', sub: 'Indonesia' },
-  { name: 'Bangkok',        type: 'City',      icon: '🏙️', sub: 'Thailand' },
-  { name: 'Dubai',          type: 'City',      icon: '🏙️', sub: 'UAE' },
-  { name: 'India',          type: 'Country',   icon: '🇮🇳', sub: '' },
-  { name: 'Japan',          type: 'Country',   icon: '🇯🇵', sub: '' },
-  { name: 'Iceland',        type: 'Country',   icon: '🇮🇸', sub: '' },
-  { name: 'Maldives',       type: 'Country',   icon: '🇲🇻', sub: '' },
-  { name: 'Malaysia',       type: 'Country',   icon: '🇲🇾', sub: '' },
-  { name: 'Morocco',        type: 'Country',   icon: '🇲🇦', sub: '' },
-  { name: 'New Zealand',    type: 'Country',   icon: '🇳🇿', sub: '' },
-  { name: 'Paris',          type: 'City',      icon: '🗼', sub: 'France' },
-  { name: 'Santorini',      type: 'Island',    icon: '🏛️', sub: 'Greece' },
-  { name: 'Singapore',      type: 'Country',   icon: '🇸🇬', sub: '' },
-  { name: 'Sri Lanka',      type: 'Country',   icon: '🇱🇰', sub: '' },
-  { name: 'Thailand',       type: 'Country',   icon: '🇹🇭', sub: '' },
-  { name: 'Tokyo',          type: 'City',      icon: '🗾', sub: 'Japan' },
-  { name: 'Kuala Lumpur',   type: 'City',      icon: '🏙️', sub: 'Malaysia' },
+// Destination data — organized by region (G Adventures style)
+const destinationRegions = [
+  {
+    name: 'Sri Lanka',
+    tagline: 'The pearl of the Indian Ocean',
+    destinations: [
+      { name: 'Colombo',       badge: 'Popular'    },
+      { name: 'Kandy',         badge: 'Top Seller' },
+      { name: 'Sigiriya',      badge: 'Trending'   },
+      { name: 'Galle',         badge: null          },
+      { name: 'Ella',          badge: 'Trending'   },
+      { name: 'Nuwara Eliya',  badge: null          },
+      { name: 'Mirissa',       badge: null          },
+      { name: 'Trincomalee',   badge: null          },
+    ]
+  },
+  {
+    name: 'Asia',
+    tagline: 'Ancient temples, vibrant cities, world-class cuisine',
+    destinations: [
+      { name: 'Bali',          badge: 'Popular'    },
+      { name: 'Bangkok',       badge: 'Popular'    },
+      { name: 'Tokyo',         badge: 'Top Seller' },
+      { name: 'Singapore',     badge: null          },
+      { name: 'Vietnam',       badge: 'Trending'   },
+      { name: 'Kuala Lumpur',  badge: null          },
+      { name: 'Thailand',      badge: null          },
+      { name: 'Japan',         badge: null          },
+    ]
+  },
+  {
+    name: 'Indian Ocean',
+    tagline: 'Crystal lagoons, islands, and luxury retreats',
+    destinations: [
+      { name: 'Maldives',      badge: 'Top Seller' },
+      { name: 'India',         badge: 'Popular'    },
+      { name: 'Seychelles',    badge: null          },
+      { name: 'Mauritius',     badge: null          },
+    ]
+  },
+  {
+    name: 'Middle East',
+    tagline: 'Ancient wonders and dazzling modernity',
+    destinations: [
+      { name: 'Dubai',         badge: 'Popular'    },
+      { name: 'Abu Dhabi',     badge: null          },
+      { name: 'Morocco',       badge: 'Trending'   },
+      { name: 'Jordan',        badge: null          },
+    ]
+  },
+  {
+    name: 'Europe',
+    tagline: 'History, culture, and breathtaking landscapes',
+    destinations: [
+      { name: 'Paris',         badge: null          },
+      { name: 'Santorini',     badge: 'Popular'    },
+      { name: 'Iceland',       badge: 'Trending'   },
+      { name: 'Rome',          badge: null          },
+    ]
+  },
 ];
 
 function initSearch() {
@@ -73,27 +110,60 @@ function initSearch() {
   if (destInput && destDropdown) {
     let highlightIdx = -1;
 
-    function renderDestDropdown(query) {
-      const q = query.toLowerCase().trim();
-      const filtered = q
-        ? destinations.filter(d => d.name.toLowerCase().includes(q) || d.sub.toLowerCase().includes(q))
-        : destinations.slice(0, 8);
+    function badgeHtml(badge) {
+      if (!badge) return '';
+      const cls = badge.toLowerCase().replace(' ', '-');
+      return `<span class="dest-badge dest-badge-${cls}">${badge}</span>`;
+    }
 
-      if (filtered.length === 0) {
-        destDropdown.innerHTML = `<div class="dest-no-results">No destinations found for "${query}"</div>`;
-      } else {
-        destDropdown.innerHTML = `
-          <div class="dest-dropdown-header">${q ? 'Search results' : 'Popular destinations'}</div>
-          ${filtered.map((d, i) => `
-            <div class="dest-dropdown-item" data-idx="${i}" data-name="${d.name}" onmousedown="selectDest('${d.name}')">
-              <div class="dest-item-left">
-                <div class="dest-item-icon">${d.icon}</div>
-                <div>
-                  <div class="dest-item-name">${highlightMatch(d.name, q)}</div>
-                  ${d.sub ? `<div class="dest-item-sub">${d.sub}</div>` : ''}
+    function renderDestDropdown(query) {
+      const q = (query || '').toLowerCase().trim();
+
+      if (q) {
+        // Search mode: flat filtered list across all regions
+        const results = [];
+        destinationRegions.forEach(region => {
+          region.destinations.forEach(d => {
+            if (d.name.toLowerCase().includes(q) || region.name.toLowerCase().includes(q)) {
+              results.push({ ...d, region: region.name });
+            }
+          });
+        });
+
+        if (results.length === 0) {
+          destDropdown.innerHTML = `<div class="dest-no-results">No destinations found for "<strong>${query}</strong>"</div>`;
+        } else {
+          destDropdown.innerHTML = `
+            <div class="dest-section-label">Search results</div>
+            ${results.map((d, i) => `
+              <div class="dest-result-item" data-idx="${i}" data-name="${d.name}" onmousedown="selectDest('${d.name}')">
+                <div class="dest-result-info">
+                  <span class="dest-result-name">${highlightMatch(d.name, q)}</span>
+                  ${badgeHtml(d.badge)}
                 </div>
+                <span class="dest-result-region">${d.region}</span>
               </div>
-              <div class="dest-item-type">${d.type}</div>
+            `).join('')}
+          `;
+        }
+      } else {
+        // Browse mode: regional mega panel
+        destDropdown.innerHTML = `
+          <div class="dest-section-label">Popular destinations</div>
+          ${destinationRegions.map(region => `
+            <div class="dest-region-block">
+              <div class="dest-region-header">
+                <span class="dest-region-name">${region.name}</span>
+                <span class="dest-region-tagline">${region.tagline}</span>
+              </div>
+              <div class="dest-region-grid">
+                ${region.destinations.map(d => `
+                  <div class="dest-place-item" onmousedown="selectDest('${d.name}')">
+                    <span class="dest-place-name">${d.name}</span>
+                    ${badgeHtml(d.badge)}
+                  </div>
+                `).join('')}
+              </div>
             </div>
           `).join('')}
         `;
@@ -105,7 +175,7 @@ function initSearch() {
       if (!q) return text;
       const idx = text.toLowerCase().indexOf(q);
       if (idx === -1) return text;
-      return text.slice(0, idx) + `<strong>${text.slice(idx, idx + q.length)}</strong>` + text.slice(idx + q.length);
+      return text.slice(0, idx) + `<mark>${text.slice(idx, idx + q.length)}</mark>` + text.slice(idx + q.length);
     }
 
     destInput.addEventListener('focus', () => {
