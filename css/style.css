@@ -193,7 +193,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
   white-space: nowrap; display: flex; align-items: center; gap: 8px;
   font-family: 'Poppins',sans-serif; transition: background 0.2s; min-height: 68px;
 }
-.search-btn:hover { background: var(--primary-dark); }
+.search-btn:hover { background: var(--gold); color: var(--dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,184,0,0.4); }
 
 /* Dropdowns */
 .dest-dropdown, .search-dropdown {
