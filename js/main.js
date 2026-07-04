@@ -178,15 +178,30 @@ function initSearch() {
       return text.slice(0, idx) + `<mark>${text.slice(idx, idx + q.length)}</mark>` + text.slice(idx + q.length);
     }
 
+    const destClearBtn = document.getElementById('dest-clear');
+
+    function updateDestClear() {
+      if (destClearBtn) destClearBtn.style.display = destInput.value ? 'flex' : 'none';
+    }
+
     destInput.addEventListener('focus', () => {
       renderDestDropdown(destInput.value);
       destDropdown.classList.add('active');
       closeOtherDropdowns();
     });
 
+    destInput.addEventListener('click', () => {
+      if (!destDropdown.classList.contains('active')) {
+        renderDestDropdown(destInput.value);
+        destDropdown.classList.add('active');
+        closeOtherDropdowns();
+      }
+    });
+
     destInput.addEventListener('input', () => {
       renderDestDropdown(destInput.value);
       destDropdown.classList.add('active');
+      updateDestClear();
     });
 
     destInput.addEventListener('keydown', (e) => {
@@ -278,8 +293,22 @@ function doSearch() {
 function selectDest(name) {
   const input = document.getElementById('dest-input');
   const dropdown = document.getElementById('dest-dropdown-list');
+  const clearBtn = document.getElementById('dest-clear');
   if (input) input.value = name;
   if (dropdown) dropdown.classList.remove('active');
+  if (clearBtn) clearBtn.style.display = 'flex';
+}
+
+function clearDest() {
+  const input = document.getElementById('dest-input');
+  const dropdown = document.getElementById('dest-dropdown-list');
+  const clearBtn = document.getElementById('dest-clear');
+  if (input) { input.value = ''; input.focus(); }
+  if (clearBtn) clearBtn.style.display = 'none';
+  if (dropdown) {
+    // re-render regional list and show it
+    input && input.dispatchEvent(new Event('focus'));
+  }
 }
 
 function renderDateDropdown() {

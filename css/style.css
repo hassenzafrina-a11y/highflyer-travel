@@ -254,6 +254,18 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 /* No results */
 .dest-no-results { padding: 20px; font-size: 14px; color: var(--gray); text-align: center; }
 
+/* Clear button */
+.dest-clear-btn {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%; border: none;
+  background: var(--gray); color: var(--white);
+  font-size: 11px; cursor: pointer; align-items: center; justify-content: center;
+  line-height: 1; padding: 0; transition: background 0.15s;
+  z-index: 10;
+}
+.dest-clear-btn:hover { background: var(--primary); }
+#dest-field { position: relative; }
+
 /* Badges */
 .dest-badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
 .dest-badge-popular    { background: #FFF3CD; color: #8a6500; }

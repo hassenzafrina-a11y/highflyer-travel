@@ -39,7 +39,7 @@
   }
   </script>
 
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
@@ -79,7 +79,7 @@
           <div class="search-bar" onclick="event.stopPropagation()">
             <div class="search-field" id="dest-field">
               <label for="dest-input">WHERE TO?</label>
-              <input type="text" id="dest-input" placeholder="Enter destination" autocomplete="off">
+              <input type="text" id="dest-input" placeholder="Enter destination" autocomplete="off"><button class="dest-clear-btn" id="dest-clear" onclick="clearDest()" style="display:none" title="Clear">✕</button>
               <div class="dest-dropdown" id="dest-dropdown-list" role="listbox"></div>
             </div>
             <div class="search-field" id="date-field" onclick="toggleDateDropdown(event)">
@@ -476,7 +476,7 @@
 
   <a href="https://wa.me/94779191001" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">💬</a>
 
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=10"></script>
   <script src="js/blog.js?v=2"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
