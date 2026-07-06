@@ -88,6 +88,37 @@
       .service-detail { grid-template-columns: 1fr; }
       .service-detail.reverse { direction: ltr; }
     }
+
+    /* Flight prices grid */
+    .flight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .flight-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .flight-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(92,13,138,0.12); }
+    .flight-card-flag { font-size: 36px; }
+    .flight-card-dest { font-size: 16px; font-weight: 800; color: var(--dark); }
+    .flight-card-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--gray); }
+    .flight-card-price { font-size: 20px; font-weight: 800; color: var(--primary); margin: 4px 0; }
+    .flight-card-price span { font-size: 12px; font-weight: 500; color: var(--gray); display: block; margin-top: 2px; }
+    .flight-card .btn { font-size: 12px; padding: 8px 18px; margin-top: 6px; }
+    @media (max-width: 1024px) { .flight-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px)  { .flight-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px)  { .flight-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -184,6 +215,33 @@
         </div>
       </article>
 
+    </section>
+
+    <!-- Flight Prices -->
+    <section aria-labelledby="flights-heading">
+      <div class="section-header animate-in">
+        <span class="section-tag">Airline Tickets</span>
+        <h2 id="flights-heading">Flight Ticket Prices</h2>
+        <p>Starting from prices in LKR — subject to availability. Contact us for the latest fares.</p>
+      </div>
+      <div class="flight-grid animate-in">
+        <div class="flight-card"><div class="flight-card-flag">🇺🇸</div><div class="flight-card-dest">New York</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 319,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇬🇧</div><div class="flight-card-dest">London</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 229,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇮🇹</div><div class="flight-card-dest">Rome</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 199,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇲🇾</div><div class="flight-card-dest">Malaysia</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 67,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇹🇭</div><div class="flight-card-dest">Thailand</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 90,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇦🇿</div><div class="flight-card-dest">Azerbaijan</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 350,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇸🇬</div><div class="flight-card-dest">Singapore</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 114,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇳🇱</div><div class="flight-card-dest">Amsterdam</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 299,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇫🇷</div><div class="flight-card-dest">Paris</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 245,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇩🇪</div><div class="flight-card-dest">Germany</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 265,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇮🇩</div><div class="flight-card-dest">Bali</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 119,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇮🇳</div><div class="flight-card-dest">Manali</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 99,600<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇲🇻</div><div class="flight-card-dest">Maldives</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 102,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇻🇳</div><div class="flight-card-dest">Vietnam</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 132,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇨🇳</div><div class="flight-card-dest">China</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 181,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+        <div class="flight-card"><div class="flight-card-flag">🇮🇳</div><div class="flight-card-dest">Delhi</div><div class="flight-card-label">From</div><div class="flight-card-price">LKR 99,000<span>per person</span></div><a href="contact.html" class="btn btn-navy">Enquire Now</a></div>
+      </div>
     </section>
 
     <!-- Process -->
