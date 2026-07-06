@@ -56,13 +56,13 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 .btn-primary { background: var(--primary); color: var(--white); border-color: var(--primary); }
 .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); transform: translateY(-1px); }
 .btn-gold { background: var(--gold); color: var(--dark); border-color: var(--gold); }
-.btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-1px); }
+.btn-gold:hover { background: var(--primary); color: var(--white); border-color: var(--primary); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(92,13,138,0.35); }
 .btn-outline { background: transparent; color: var(--primary); border-color: var(--primary); }
 .btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-1px); }
 .btn-white { background: var(--white); color: var(--primary); border-color: var(--white); }
 .btn-white:hover { background: var(--light); transform: translateY(-1px); }
 .btn-white-outline { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.7); }
-.btn-white-outline:hover { background: rgba(255,255,255,0.15); border-color: var(--white); }
+.btn-white-outline:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(245,184,0,0.4); }
 .btn-navy { background: var(--primary); color: var(--white); border-color: var(--primary); }
 .btn-navy:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
