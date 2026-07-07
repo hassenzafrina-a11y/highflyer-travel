@@ -386,6 +386,7 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 .stat-item:last-child { border-right: none; }
 .stat-number { font-size: 44px; font-weight: 900; color: var(--gold); display: block; line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 14px; color: rgba(255,255,255,0.75); font-weight: 500; }
+.stat-item p { font-size: 14px; color: rgba(255,255,255,0.75); font-weight: 500; margin: 0; }
 
 /* ─── SERVICES ─── */
 .service-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1200px; margin: 0 auto 80px; padding: 0 40px; }
