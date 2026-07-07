@@ -417,6 +417,23 @@ h1,h2,h3,h4,h5 { font-family: 'Nunito','Poppins',sans-serif; color: var(--dark);
 .blog-meta { display: flex; align-items: center; gap: 14px; font-size: 12px; color: var(--gray); }
 .blog-meta img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
 
+/* ─── ABOUT PAGE ─── */
+.about-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-intro.container { padding-left: 0; padding-right: 0; }
+.about-intro img { width: 100%; border-radius: var(--radius-lg); aspect-ratio: 4/3; object-fit: cover; display: block; }
+.about-text .section-tag { display: inline-block; margin-bottom: 12px; }
+.about-text h2 { font-size: clamp(26px,3vw,38px); font-weight: 900; color: var(--dark); margin-bottom: 16px; }
+.about-text p { font-size: 15px; color: var(--gray); line-height: 1.8; margin-bottom: 14px; }
+.about-highlights { display: flex; gap: 16px; margin-top: 24px; flex-wrap: wrap; }
+.highlight-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--dark); background: var(--light); border-radius: 8px; padding: 10px 16px; }
+.values-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+.values-grid.container { padding-left: 0; padding-right: 0; }
+.value-card { background: var(--white); border-radius: var(--radius-lg); padding: 36px 28px; box-shadow: var(--card-shadow); transition: all 0.3s; }
+.value-card:hover { transform: translateY(-4px); box-shadow: 0 10px 32px rgba(92,13,138,0.12); }
+.value-card h3 { font-size: 20px; font-weight: 800; color: var(--dark); margin-bottom: 14px; }
+.value-card p { font-size: 15px; color: var(--gray); line-height: 1.75; }
+.stats-grid { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; }
+
 /* ─── TEAM ─── */
 .team-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
 .team-card { text-align: center; background: var(--white); border-radius: var(--radius-lg); padding: 32px 24px; box-shadow: var(--card-shadow); transition: all 0.3s; }
@@ -669,6 +686,8 @@ footer ul a:hover { color: var(--gold); }
   .testimonials-grid { grid-template-columns: 1fr; }
   .inbound-packages { grid-template-columns: 1fr; }
   .experience-grid { grid-template-columns: 1fr; }
+  .about-intro { grid-template-columns: 1fr; gap: 32px; }
+  .values-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .navbar { padding: 0 20px; }
