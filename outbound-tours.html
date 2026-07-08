@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Outbound Tour Packages | HighFlyer Travel — Holidays from Sri Lanka</title>
+  <meta name="description" content="Browse HighFlyer Travel's outbound tour packages — beach getaways, cultural tours, honeymoon packages, luxury escapes and adventure trips from Sri Lanka.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.highflyer.travel/outbound-tours.html">
+
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <style>
+    .results-meta {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 40px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .results-meta h1 { font-size: 26px; font-weight: 800; color: var(--navy); }
+    .results-count { font-size: 14px; color: var(--gray); margin-top: 4px; }
+    .results-sort { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--gray); }
+    .results-sort select { padding: 8px 14px; border: 2px solid var(--light-gray); border-radius: 8px; font-family: inherit; font-size: 14px; outline: none; cursor: pointer; }
+
+    .results-layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 40px 60px;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 32px;
+    }
+
+    .filters-sidebar { position: sticky; top: 90px; align-self: start; }
+    .filter-card { background: var(--white); border-radius: var(--radius); padding: 22px; box-shadow: var(--card-shadow); margin-bottom: 16px; }
+    .filter-card h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .filter-option { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+    .filter-option label { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--dark); cursor: pointer; }
+    .filter-option input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+    .filter-option .count { font-size: 12px; color: var(--gray); }
+    .duration-slider { width: 100%; accent-color: var(--primary); margin-top: 8px; }
+    .duration-label { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray); margin-top: 6px; }
+
+    .tour-card { background: var(--white); border-radius: var(--radius); box-shadow: var(--card-shadow); display: flex; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; margin-bottom: 20px; }
+    .tour-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(92,13,138,0.13); }
+    .tour-card-img { width: 260px; min-height: 200px; object-fit: cover; flex-shrink: 0; }
+    .tour-card-body { padding: 22px 24px; flex: 1; display: flex; flex-direction: column; }
+    .tour-card-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tour-badge { padding: 3px 10px; border-radius: 50px; font-size: 11px; font-weight: 600; }
+    .tour-badge-type { background: rgba(92,13,138,0.08); color: var(--primary); }
+    .tour-badge-hot { background: rgba(245,184,0,0.15); color: #8a6500; }
+    .tour-card h3 { font-size: 19px; font-weight: 700; color: var(--dark); margin-bottom: 8px; line-height: 1.3; }
+    .tour-highlights { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tour-highlight { font-size: 13px; color: var(--gray); display: flex; align-items: center; gap: 5px; }
+    .tour-card p { font-size: 13px; color: var(--gray); line-height: 1.6; flex: 1; margin-bottom: 16px; }
+    .tour-card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; border-top: 1px solid var(--light-gray); gap: 12px; }
+    .tour-price { font-size: 22px; font-weight: 800; color: var(--navy); }
+    .tour-price span { font-size: 13px; font-weight: 400; color: var(--gray); }
+    .tour-rating { display: flex; align-items: center; gap: 5px; font-size: 13px; }
+    .tour-rating .stars { color: var(--gold); font-size: 14px; }
+
+    @media (max-width: 1024px) { .results-layout { grid-template-columns: 1fr; } .filters-sidebar { position: static; } }
+    @media (max-width: 768px) { .tour-card { flex-direction: column; } .tour-card-img { width: 100%; height: 200px; } .results-meta, .results-layout { padding-left: 20px; padding-right: 20px; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="HighFlyer Travel Home">
+      <img src="assets/logo.png" alt="HighFlyer Travel — Simplified Travel">
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="destinations.html">Destinations</a></li>
+      <li><a href="inbound.html">Visit Sri Lanka</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main>
+
+    <header class="page-hero" role="banner">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="services.html">Services</a>
+        <span aria-hidden="true">›</span>
+        <span>Outbound Tours</span>
+      </nav>
+      <h1>Outbound Tour Packages</h1>
+      <p>Curated holidays from Sri Lanka to the world's most incredible destinations.</p>
+    </header>
+
+    <div class="results-meta">
+      <div>
+        <h1>All Tour Packages</h1>
+        <p class="results-count" id="results-count"></p>
+      </div>
+      <div class="results-sort">
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select" onchange="sortResults(this.value)">
+          <option value="recommended">Recommended</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="duration">Duration</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="results-layout">
+
+      <aside class="filters-sidebar" aria-label="Filter tours">
+        <div class="filter-card">
+          <h3>Tour Type</h3>
+          <div class="filter-option">
+            <label><input type="checkbox" class="type-filter" value="Beach & Relaxation" onchange="applyFilters()"> Beach & Relaxation</label>
+            <span class="count">3</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" class="type-filter" value="Cultural" onchange="applyFilters()"> Cultural</label>
+            <span class="count">4</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" class="type-filter" value="Luxury" onchange="applyFilters()"> Luxury</label>
+            <span class="count">2</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" class="type-filter" value="Honeymoon" onchange="applyFilters()"> Honeymoon</label>
+            <span class="count">2</span>
+          </div>
+          <div class="filter-option">
+            <label><input type="checkbox" class="type-filter" value="Adventure" onchange="applyFilters()"> Adventure</label>
+            <span class="count">3</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <h3>Duration</h3>
+          <input type="range" class="duration-slider" min="3" max="14" value="14" oninput="updateDuration(this.value)">
+          <div class="duration-label">
+            <span>3 nights</span>
+            <span id="duration-val">Up to 14 nights</span>
+          </div>
+        </div>
+
+        <div class="filter-card">
+          <h3>Budget (LKR)</h3>
+          <input type="range" class="duration-slider" min="100000" max="500000" value="500000" step="10000" oninput="updateBudget(this.value)">
+          <div class="duration-label">
+            <span>100K</span>
+            <span id="budget-val">Up to 500,000</span>
+          </div>
+        </div>
+      </aside>
+
+      <section id="results-container" aria-live="polite" aria-label="Tour listings"></section>
+
+    </div>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/logo.png" alt="HighFlyer Travel" style="height:36px;margin-bottom:14px">
+        <p>Simplified travel experiences for every kind of explorer. Based in Sri Lanka, connecting you to the world.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/highflyer.travel/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/people/HighFlyer-Travel/61582590789496/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="https://wa.me/94779191001" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="destinations.html">Destinations</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="inbound.html">Inbound Sri Lanka</a></li>
+          <li><a href="blog.html">Travel Blog</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer-contact">
+          <li><span>📞</span><span><a href="tel:+94779191001">+94 77 919 1001</a></span></li>
+          <li><span>✉️</span><span><a href="mailto:highflyertravel25@gmail.com">highflyertravel25@gmail.com</a></span></li>
+          <li><span>📍</span><span>Sri Lanka</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 HighFlyer Travel. All rights reserved.</p>
+      <p>Simplified Travel — Sri Lanka</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=11"></script>
+  <script>
+    const tours = [
+      { title: 'Bali Bliss', destination: 'Bali', type: 'Beach & Relaxation', nights: 4, price: 189000, rating: 4.9, badge: 'Popular', image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80', description: 'Rice terraces, ancient temples, surf beaches and vibrant nightlife. Includes Ubud, Seminyak and Tanah Lot.', highlights: ['5D / 4N', '4★ Hotel', 'Private Guide', 'Transfers'] },
+      { title: 'Maldives Honeymoon Escape', destination: 'Maldives', type: 'Honeymoon', nights: 4, price: 289000, rating: 5.0, badge: 'Top Seller', image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80', description: 'Overwater villas, crystal lagoons and private beach dinners. The most romantic destination on earth.', highlights: ['5D / 4N', 'Overwater Villa', 'Speedboat Transfer', 'Breakfast & Dinner'] },
+      { title: 'Dubai Luxury Experience', destination: 'Dubai', type: 'Luxury', nights: 4, price: 229000, rating: 4.8, badge: 'Luxury', image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80', description: 'Burj Khalifa, desert safaris, world-class shopping and 5-star stays. Dubai is dazzling.', highlights: ['5D / 4N', '5★ Hotel', 'Desert Safari', 'City Tour'] },
+      { title: 'Bangkok Explorer', destination: 'Bangkok', type: 'Cultural', nights: 4, price: 149000, rating: 4.8, badge: null, image: 'https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&q=80', description: 'Golden temples, floating markets, street food heaven and rooftop bars. Bangkok is endlessly exciting.', highlights: ['5D / 4N', '4★ Hotel', 'Airport Transfers', 'Temple Tour'] },
+      { title: 'Phuket Paradise', destination: 'Phuket', type: 'Beach & Relaxation', nights: 5, price: 169000, rating: 4.8, badge: 'Trending', image: 'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=600&q=80', description: 'White sand beaches, turquoise waters, island hopping and fresh seafood. Thailand\'s ultimate beach escape.', highlights: ['6D / 5N', 'Beachfront Resort', 'Island Hopping', 'Transfers'] },
+      { title: 'Japan Discovery', destination: 'Japan', type: 'Cultural', nights: 7, price: 349000, rating: 4.9, badge: 'Top Seller', image: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80', description: 'Tokyo\'s neon lights, Kyoto\'s ancient temples, Osaka\'s street food and Mount Fuji\'s majesty.', highlights: ['8D / 7N', '4★ Hotels', 'JR Pass', 'Guided Tours'] },
+      { title: 'Singapore City Escape', destination: 'Singapore', type: 'Cultural', nights: 3, price: 159000, rating: 4.7, badge: null, image: 'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600&q=80', description: 'Gardens by the Bay, Sentosa Island, Universal Studios and Michelin-starred hawker food.', highlights: ['4D / 3N', '4★ Hotel', 'Airport Transfers', 'Gardens Tour'] },
+      { title: 'Paris Romance', destination: 'Paris', type: 'Honeymoon', nights: 7, price: 399000, rating: 4.8, badge: 'Romantic', image: 'https://images.unsplash.com/photo-1499856871958-5b9357976b82?w=600&q=80', description: 'The Eiffel Tower, Seine river cruises, Louvre galleries and Michelin-starred dining.', highlights: ['8D / 7N', 'Boutique Hotel', 'Seine Cruise', 'Louvre Entry'] },
+      { title: 'Vietnam Heritage Tour', destination: 'Vietnam', type: 'Adventure', nights: 6, price: 199000, rating: 4.8, badge: 'Trending', image: 'https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80', description: 'Ha Long Bay cruises, Hoi An lantern streets, Hanoi\'s Old Quarter and the Mekong Delta.', highlights: ['7D / 6N', '4★ Hotels', 'Ha Long Cruise', 'Local Guides'] },
+      { title: 'Santorini Sunset', destination: 'Santorini', type: 'Luxury', nights: 6, price: 429000, rating: 5.0, badge: 'Luxury', image: 'https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80', description: 'Caldera-view infinity pools, volcanic beaches, exquisite Greek cuisine and legendary Oia sunsets.', highlights: ['7D / 6N', 'Cave Suite', 'Wine Tasting', 'Caldera Cruise'] },
+      { title: 'Malaysia Discovery', destination: 'Malaysia', type: 'Adventure', nights: 4, price: 139000, rating: 4.6, badge: null, image: 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&q=80', description: 'Twin Towers, rainforest treetop walks, Penang street art and Cameron Highlands tea estates.', highlights: ['5D / 4N', '4★ Hotel', 'Airport Transfers', 'City Tour'] },
+      { title: 'Azerbaijan Adventure', destination: 'Azerbaijan', type: 'Adventure', nights: 5, price: 279000, rating: 4.7, badge: 'Trending', image: 'https://images.unsplash.com/photo-1580181591003-22c7ed92c9cc?w=600&q=80', description: 'Baku\'s futuristic skyline, ancient fire temples, mud volcanoes and the Caucasus mountains.', highlights: ['6D / 5N', '4★ Hotel', 'Fire Temple Visit', 'Mountain Day Trip'] },
+    ];
+
+    let filtered = [...tours];
+    let maxNights = 14;
+    let maxBudget = 500000;
+
+    function applyFilters() {
+      const checked = [...document.querySelectorAll('.type-filter:checked')].map(c => c.value);
+      filtered = tours.filter(t => {
+        const typeMatch = checked.length === 0 || checked.includes(t.type);
+        return typeMatch && t.nights <= maxNights && t.price <= maxBudget;
+      });
+      render();
+    }
+
+    function sortResults(by) {
+      if (by === 'price-asc') filtered.sort((a, b) => a.price - b.price);
+      else if (by === 'price-desc') filtered.sort((a, b) => b.price - a.price);
+      else if (by === 'duration') filtered.sort((a, b) => a.nights - b.nights);
+      else if (by === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+      else filtered = tours.filter(t => filtered.includes(t));
+      render();
+    }
+
+    function updateDuration(val) {
+      maxNights = parseInt(val);
+      document.getElementById('duration-val').textContent = `Up to ${val} nights`;
+      applyFilters();
+    }
+
+    function updateBudget(val) {
+      maxBudget = parseInt(val);
+      document.getElementById('budget-val').textContent = `Up to ${parseInt(val).toLocaleString()}`;
+      applyFilters();
+    }
+
+    function render() {
+      const c = document.getElementById('results-container');
+      document.getElementById('results-count').textContent = `${filtered.length} package${filtered.length !== 1 ? 's' : ''} found`;
+
+      if (!filtered.length) {
+        c.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--gray)"><div style="font-size:48px;margin-bottom:16px">🗺️</div><p style="font-size:16px;margin-bottom:24px">No packages match your filters.</p><a href="contact.html" class="btn btn-navy">Request a Custom Package</a></div>`;
+        return;
+      }
+
+      c.innerHTML = filtered.map(t => `
+        <article class="tour-card">
+          <img class="tour-card-img" src="${t.image}" alt="${t.title}" loading="lazy">
+          <div class="tour-card-body">
+            <div class="tour-card-meta">
+              <span class="tour-badge tour-badge-type">${t.type}</span>
+              ${t.badge ? `<span class="tour-badge tour-badge-hot">${t.badge}</span>` : ''}
+            </div>
+            <h3>${t.title}</h3>
+            <div class="tour-highlights">
+              ${t.highlights.map(h => `<span class="tour-highlight">✦ ${h}</span>`).join('')}
+            </div>
+            <p>${t.description}</p>
+            <div class="tour-card-footer">
+              <div>
+                <div class="tour-price">LKR ${t.price.toLocaleString()} <span>/ person</span></div>
+                <div class="tour-rating" style="margin-top:4px">
+                  <span class="stars">★★★★★</span>
+                  <strong style="margin-left:4px">${t.rating}</strong>
+                </div>
+              </div>
+              <a href="contact.html?type=outbound&tour=${encodeURIComponent(t.title)}&price=${t.price}" class="btn btn-gold">Enquire Now</a>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('results-count').textContent = `${tours.length} packages found`;
+      render();
+    });
+  </script>
+</body>
+</html>

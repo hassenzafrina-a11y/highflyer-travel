@@ -406,13 +406,17 @@
       if (msgField) msgField.value = `Hi, I'm interested in a flight ticket to ${dest}${priceFormatted ? ' (starting from ' + priceFormatted + ')' : ''}. Please let me know the best available fares and dates.`;
     }
 
-    // Pre-fill tour if coming from search page
+    // Pre-fill tour if coming from search page or outbound tours page
     const tour = params.get('tour');
     if (tour) {
-      const msgField = document.getElementById('message');
-      if (msgField) msgField.value = `I'm interested in the "${tour}" package. Please send me more details and a quote.`;
       const typeField = document.getElementById('enquiry-type');
       if (typeField) typeField.value = 'outbound';
+      const tourPrice = params.get('price');
+      const priceText = tourPrice ? ' (starting from LKR ' + Number(tourPrice).toLocaleString() + ')' : '';
+      const destField = document.getElementById('destination');
+      if (destField) destField.value = tour.replace(/\+/g, ' ');
+      const msgField = document.getElementById('message');
+      if (msgField) msgField.value = `Hi, I'm interested in the "${tour.replace(/\+/g, ' ')}" package${priceText}. Please send me more details and a quote.`;
     }
 
     function submitForm(e) {
