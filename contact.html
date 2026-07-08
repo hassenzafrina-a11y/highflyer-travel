@@ -383,8 +383,23 @@
 
   <script src="js/main.js?v=5"></script>
   <script>
-    // Pre-fill tour if coming from search page
     const params = new URLSearchParams(window.location.search);
+
+    // Pre-fill from flight enquiry
+    const type = params.get('type');
+    const dest = params.get('dest');
+    const price = params.get('price');
+    if (type === 'flight' && dest) {
+      const typeField = document.getElementById('enquiry-type');
+      if (typeField) typeField.value = 'flight';
+      const destField = document.getElementById('destination');
+      if (destField) destField.value = dest;
+      const priceFormatted = price ? 'LKR ' + Number(price).toLocaleString() : '';
+      const msgField = document.getElementById('message');
+      if (msgField) msgField.value = `Hi, I'm interested in a flight ticket to ${dest}${priceFormatted ? ' (starting from ' + priceFormatted + ')' : ''}. Please let me know the best available fares and dates.`;
+    }
+
+    // Pre-fill tour if coming from search page
     const tour = params.get('tour');
     if (tour) {
       const msgField = document.getElementById('message');
